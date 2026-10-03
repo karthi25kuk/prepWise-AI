@@ -46,77 +46,10 @@ The project is designed to help students and job seekers practice technical inte
 * GitHub
 * VS Code
 
-## 📂 Project Structure
-
-prepWise-AI/
-│
-├── client/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── Hero.jsx
-│   │   │   ├── QuizHeader.jsx
-│   │   │   ├── ProgressBar.jsx
-│   │   │   ├── QuestionCard.jsx
-│   │   │   ├── QuizNavigation.jsx
-│   │   │   ├── CategorySelector.jsx
-│   │   │   ├── SubtopicSelector.jsx
-│   │   │   ├── ConceptSelector.jsx
-│   │   │   ├── DifficultySelector.jsx
-│   │   │   ├── QuestionCountSelector.jsx
-│   │   │   └── GenerateButton.jsx
-│   │   │
-│   │   ├── pages/
-│   │   │   ├── Home.jsx
-│   │   │   ├── GenerateQuiz.jsx
-│   │   │   ├── Quiz.jsx
-│   │   │   ├── Result.jsx
-│   │   │   └── Review.jsx
-│   │   │
-│   │   ├── data/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   │
-│   └── package.json
-│
-├── server/
-│   ├── server.js
-│   ├── .env
-│   └── package.json
-│
-└── README.md
-
-
 ## 🔄 Application Workflow
 
-Home
-  ↓
-Generate Quiz
-  ↓
-Select Category
-  ↓
-Select Subtopic
-  ↓
-Select Concept
-  ↓
-Select Difficulty
-  ↓
-Select Question Count
-  ↓
-Generate Quiz
-  ↓
-Groq AI
-  ↓
-Quiz
-  ↓
-Submit
-  ↓
-Result
-  ├── Review Answers
-  │      ↓
-  │    Review
-  │
-  └── Go to Home
+Home --> Generate Quiz --> Select Category --> Select Subtopic --> Select Concept --> Select Difficulty --> Select Question Count --> Generate Quiz --> Groq AI
+--> Quiz --> Submit --> Result --> Review Answers --> Go to Home
 
 ## ⚙️ How It Works
 
@@ -223,7 +156,7 @@ POST /generate
     {
       "question": "What is inheritance in Python?",
       "options": [
-        "Creating a new class from an existing class",
+       "Creating a new class from an existing class",
         "Creating multiple objects",
         "Deleting a class",
         "Defining a variable"
