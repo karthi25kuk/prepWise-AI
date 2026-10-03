@@ -1,6 +1,7 @@
 export const categoryIcons = {
   Programming: "💻",
   Aptitude: "🧮",
+  "Logical Reasoning": "🧠",
   "Computer Science": "🖥️",
 };
 
@@ -19,6 +20,14 @@ export const subtopicIcons = {
   Calendar: "📅",
   Clock: "🕒",
   Ages: "👨",
+
+  "Syllogism": "🧠",
+  "Blood Relations": "👨‍👩‍👧‍👦",
+  "Direction Sense": "🧭",
+  "Seating Arrangement": "💺",
+  "Coding-Decoding": "🔐",
+  "Series": "📈",
+  "Puzzles": "🧩",
 
   DBMS: "🗄️",
   "Operating Systems": "💽",

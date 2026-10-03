@@ -1,19 +1,19 @@
 const questionCounts = [
   {
     value: 5,
-    label: "5 Questions",
+    label: "Questions",
   },
   {
     value: 10,
-    label: "10 Questions",
+    label: "Questions",
   },
   {
     value: 15,
-    label: "15 Questions",
+    label: "Questions",
   },
   {
     value: 20,
-    label: "20 Questions",
+    label: "Questions",
   },
 ];
 

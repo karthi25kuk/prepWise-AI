@@ -53,6 +53,16 @@ const quizData = {
     Ages: []
   },
 
+  "Logical Reasoning": {
+    "Syllogism": [],
+    "Blood Relations": [],
+    "Direction Sense": [],
+    "Seating Arrangement": [],
+    "Coding-Decoding": [],
+    "Series": [],
+    "Puzzles": []
+  },
+
   "Computer Science": {
     DBMS: [
       "Joins",

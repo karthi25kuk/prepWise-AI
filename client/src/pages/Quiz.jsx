@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import QuizHeader from "../components/QuizHeader";
 import ProgressBar from "../components/ProgressBar";
@@ -11,28 +11,9 @@ function Quiz() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const questions = [
-    {
-      question: "Which keyword is used to define a function in Python?",
-      options: ["return", "def", "lambda", "function"],
-      correctAnswer: "def",
-      explanation: "The def keyword is used to define a function in Python.",
-    },
-    {
-      question: "Which data structure follows the FIFO principle?",
-      options: ["Stack", "Queue", "Tree", "Graph"],
-      correctAnswer: "Queue",
-      explanation: "A queue follows the First In, First Out (FIFO) principle.",
-    },
-    {
-      question: "Which protocol is used to securely transfer web pages?",
-      options: ["HTTP", "FTP", "HTTPS", "SMTP"],
-      correctAnswer: "HTTPS",
-      explanation:
-        "HTTPS securely transfers web pages using encryption through TLS.",
-    },
-  ];
+  const { questions, category } = location.state;
 
   const handleAnswerSelect = (selectedOption) => {
     setSelectedAnswers((prev) => {
@@ -77,33 +58,43 @@ function Quiz() {
     <div className="min-h-screen bg-slate-100">
       <Navbar />
 
-      <div className="flex flex-col items-center">
-        <QuizHeader category="Aptitude" />
-      </div>
+      <main className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
 
-      <ProgressBar
-        currentQuestion={currentQuestionIndex + 1}
-        totalQuestions={questions.length}
-      />
+        {/* Quiz Header */}
+        <div className="mb-6">
+          <QuizHeader category={category} />
+        </div>
 
-      <div className="flex flex-col items-center">
-        <QuestionCard
-          question={questions[currentQuestionIndex].question}
-          options={questions[currentQuestionIndex].options}
-          answer={selectedAnswers[currentQuestionIndex]}
-          setAnswer={handleAnswerSelect}
-        />
-      </div>
+        {/* Progress */}
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-5 mb-6">
+          <ProgressBar
+            currentQuestion={currentQuestionIndex + 1}
+            totalQuestions={questions.length}
+          />
+        </div>
 
-      <div className="flex flex-col items-center">
-        <QuizNavigation
-          onNext={handleNext}
-          onPrevious={handlePrevious}
-          currentQuestionIndex={currentQuestionIndex}
-          totalQuestions={questions.length}
-          onSubmit={handleSubmit}
-        />
-      </div>
+        {/* Question */}
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-slate-200 p-5 sm:p-8 lg:p-10">
+          <QuestionCard
+            question={questions[currentQuestionIndex].question}
+            options={questions[currentQuestionIndex].options}
+            answer={selectedAnswers[currentQuestionIndex]}
+            setAnswer={handleAnswerSelect}
+          />
+
+          {/* Navigation */}
+          <div className="mt-8 pt-6 border-t border-slate-200">
+            <QuizNavigation
+              onNext={handleNext}
+              onPrevious={handlePrevious}
+              currentQuestionIndex={currentQuestionIndex}
+              totalQuestions={questions.length}
+              onSubmit={handleSubmit}
+            />
+          </div>
+        </div>
+
+      </main>
     </div>
   );
 }

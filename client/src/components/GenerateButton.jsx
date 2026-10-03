@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function GenerateButton({
   category,
@@ -8,8 +9,9 @@ function GenerateButton({
   difficulty,
   questionCount,
 }) {
-
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleGenerateQuiz = async () => {
     // console.log({
@@ -35,42 +37,65 @@ function GenerateButton({
         }),
       });
       const data = await response.json();
-      console.log(data);
-
+      navigate("/quiz", {
+        state: {
+          questions: data.questions,
+          category,
+        },
+      });
     } catch (error) {
       console.log("Error:", error);
-    }
-    finally {
+    } finally {
       setLoading(false);
     }
   };
 
   const canGenerate =
-    (category && subtopic && difficulty && (!hasConcepts || concept));
+    category && subtopic && difficulty && (!hasConcepts || concept);
 
   const isButtonDisabled = !canGenerate || loading;
 
   return (
-    <div className="mt-10">
+    <div className="mt-8">
       <button
         onClick={handleGenerateQuiz}
         disabled={isButtonDisabled}
         className={`
-            w-full
-            mt-8
-            py-3
-            rounded-xl
-            font-semibold
-            transition
-            ${
-              !isButtonDisabled
-                ? "bg-blue-600 hover:bg-blue-700 text-white"
-                : "bg-gray-300 text-gray-500 cursor-not-allowed"
-            }
-        `}
+        w-full
+        flex
+        items-center
+        justify-center
+        gap-2
+        py-3.5
+        px-6
+        rounded-xl
+        font-semibold
+        text-sm sm:text-base
+        transition-all
+        duration-300
+        focus:outline-none
+        focus:ring-2
+        focus:ring-blue-400
+        ${
+          !isButtonDisabled
+            ? "bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/25 hover:-translate-y-0.5"
+            : "bg-slate-200 text-slate-400 cursor-not-allowed"
+        }
+      `}
       >
-        {loading ? "⏳ Generating..." : "🚀 Generate Quiz"}
+        {loading ? (
+          <>
+            <span className="animate-spin">⏳</span>
+            Generating Your Quiz...
+          </>
+        ) : (
+          <>
+            <span>🚀</span>
+            Generate Quiz
+          </>
+        )}
       </button>
+
     </div>
   );
 }

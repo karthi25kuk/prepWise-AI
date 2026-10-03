@@ -1,44 +1,91 @@
-function ConceptSelector({category, subtopic, concept, setConcept, concepts}){
-    return(
-            <div className="mt-10">
-                <h2 className="text-xl font-semibold mb-4">
-                    Choose {subtopic} Concept
-                </h2>
-            
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            
-                    {concepts.map((item) => (
-                        <div
-                            key={item}
-                            onClick={() => setConcept(item)}
-                            className={`
-                            cursor-pointer
-                            rounded-xl
-                            p-5
-                            border-2
-                            text-center
-                            font-semibold
-                            transition-all
-                            duration-300
-                            hover:scale-105
-                            ${
-                            concept === item
-                              ? "bg-blue-600 text-white border-blue-600"
-                              : "bg-white hover:bg-gray-100 border-gray-300"
-                            }
-                            `}
-                        >
-                        <div className="text-4xl mb-3 pb-1 bg-blue-100 text-blue-600 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
-                          {item.charAt(0).toUpperCase()}
-                        </div>
-                        <h3 className="font-semibold">
-                          {item}
-                        </h3>
-                      </div>
-                    ))}
+function ConceptSelector({
+  category,
+  subtopic,
+  concept,
+  setConcept,
+  concepts,
+}) {
+  return (
+    <div className="mt-8 sm:mt-10">
+
+      {/* Heading */}
+      <div className="mb-4">
+        <h2 className="text-lg sm:text-xl font-semibold text-slate-900">
+          Choose {subtopic} Concept
+        </h2>
+
+        <p className="text-sm text-slate-500 mt-1">
+          Select the specific concept you want to practice.
+        </p>
+      </div>
+
+      {/* Concepts */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+
+        {concepts.map((item) => {
+          const isSelected = concept === item;
+
+          return (
+            <button
+              key={item}
+              type="button"
+              onClick={() => setConcept(item)}
+              className={`
+                group
+                w-full
+                rounded-2xl
+                p-4 sm:p-5
+                border-2
+                text-left
+                transition-all
+                duration-300
+                focus:outline-none
+                focus:ring-2
+                focus:ring-blue-400
+                ${
+                  isSelected
+                    ? "bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-500/20"
+                    : "bg-slate-50 border-slate-200 text-slate-800 hover:border-blue-300 hover:bg-blue-50 hover:-translate-y-1"
+                }
+              `}
+            >
+              <div className="flex items-center gap-4">
+
+                {/* Concept Icon */}
+                <div
+                  className={`
+                    flex-shrink-0
+                    flex items-center justify-center
+                    w-12 h-12
+                    rounded-xl
+                    text-lg font-bold
+                    transition
+                    ${
+                      isSelected
+                        ? "bg-white text-blue-600"
+                        : "bg-blue-100 text-blue-600 group-hover:bg-blue-200"
+                    }
+                  `}
+                >
+                  {item.charAt(0).toUpperCase()}
                 </div>
-            </div>
-        )
+
+                {/* Concept Name */}
+                <div className="flex-1">
+                  <h3 className="font-semibold text-sm sm:text-base">
+                    {item}
+                  </h3>
+                </div>
+
+              </div>
+            </button>
+          );
+        })}
+
+      </div>
+    </div>
+  );
 }
 
 export default ConceptSelector;
+
