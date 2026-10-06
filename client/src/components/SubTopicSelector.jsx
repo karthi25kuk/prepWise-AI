@@ -1,6 +1,6 @@
 import { subtopicIcons } from "../data/icons";
 
-function SubtopicSelector({
+function SubTopicSelector({
   category,
   subtopic,
   setSubtopic,
@@ -89,4 +89,4 @@ function SubtopicSelector({
   );
 }
 
-export default SubtopicSelector;
+export default SubTopicSelector;
