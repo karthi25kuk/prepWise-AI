@@ -3,7 +3,7 @@ import quizData from "../data/quizData";
 import difficulties from "../data/difficulties";
 import questionCounts from "../data/questionCounts";
 import CategorySelector from "../components/CategorySelector";
-import SubtopicSelector from "../components/SubtopicSelector";
+import SubTopicSelector from "../components/SubTopicSelector";
 import ConceptSelector from "../components/ConceptSelector";
 import DifficultySelector from "../components/DifficultySelector";
 import QuestionCountSelector from "../components/QuestionCountSelector";
@@ -85,7 +85,7 @@ function GenerateQuiz() {
           {/* Subtopic */}
           {category && (
             <div className="mb-5">
-              <SubtopicSelector
+              <SubTopicSelector
                 category={category}
                 subtopic={subtopic}
                 setSubtopic={setSubtopic}
